@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
-
+use Alert;
 class ContactController extends Controller
 {
     /**
@@ -38,6 +38,7 @@ class ContactController extends Controller
     public function store(ContactRequest $request)
     {
         Contact::create($request->toArray());
+        toast('You\'ve Successfully Add Contact','success');
         return redirect()->back();
     }
 
@@ -73,6 +74,7 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         $contact->update($request->toArray());
+        toast('You\'ve Successfully Updated Contact','success');
         return redirect()->back();
     }
 
@@ -85,6 +87,7 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         $contact->delete();
+        toast('You\'ve Successfully Deleted Contact','success');
         return redirect()->back();
     }
 }
